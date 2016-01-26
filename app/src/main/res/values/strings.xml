@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">猴赛雷红包</string>
+    <string name="app_description">世上没有什么是一颗猴赛雷不能完成的 0 - 0 \n如果有，那就两颗 \n支持QQ和微信 </string>
+    <string name="app_service_open">打开抢红包服务</string>
+    <string name="app_service_close">关闭抢红包服务</string>
+    <string name="app_github">GitHub地址支持</string>
+    <string name="use_details">\t\t\t\t1、打开猴赛雷抢红包应用,开启插件服务\n\t\t\t\t2、打开微信或QQ(最好蹲群守候)\n\t\t\t\t3、慢慢数钱</string>
+</resources>
