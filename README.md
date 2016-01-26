@@ -15,3 +15,8 @@ QQ and Wechat 抢红包插件 for Android
 本项目支持QQ红包和微信红包哟
 感谢学习的开源的地址：https://github.com/geeeeeeeeek/WeChatLuckyMoney
 微信抢红包插件, 帮助你在微信群聊抢红包时战无不胜. An Android app that helps you snatch virtual red envelopes in WeChat group chat.
+app下载地址
+![S60126-140257.jpg](http://upload-images.jianshu.io/upload_images/1216032-f5b9a0190a2d1646.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+试用地址：http://pre.im/housailei
+扫描二维码可下载
+![qr.png](http://upload-images.jianshu.io/upload_images/1216032-4619affa96e60776.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
