@@ -4,5 +4,5 @@
     <string name="app_service_open">打开抢红包服务</string>
     <string name="app_service_close">关闭抢红包服务</string>
     <string name="app_github">GitHub地址支持</string>
-    <string name="use_details">\t\t\t\t1、打开猴赛雷抢红包应用,开启插件服务\n\t\t\t\t2、打开微信或QQ(最好蹲群守候)\n\t\t\t\t3、慢慢数钱</string>
+    <string name="use_details">\t\t\t\t1、打开猴赛雷抢红包应用,打开抢红包服务\n\t\t\t\t2、打开微信或QQ(最好蹲群守候)\n\t\t\t\t3、慢慢数钱</string>
 </resources>

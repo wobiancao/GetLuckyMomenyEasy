@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
          startActivity(intent);
     }
     public void onGithubClick(View view) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(""));
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/a12a15a05/GetLuckyMomenyEasy.git"));
         startActivity(browserIntent);
     }
 }
