@@ -4,14 +4,18 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 import com.wobiancao.getluckymomenyeasy.base.BaseAccessibilityService;
-
-import java.util.List;
+import com.wobiancao.getluckymomenyeasy.presenter.QQHouSaiLeiPresenter;
+import com.wobiancao.getluckymomenyeasy.presenter.WeChatHouSaiLeiPresenter;
 
 /**
  * Created by xy on 16/1/27.
  */
 public class HouSaiLeiNewService extends BaseAccessibilityService {
-
+    private boolean mMutex , mLuckyMoneyReceived, mNeedUnpack, mNeedBack, mLuckyMoneyPicked;
+    private AccessibilityNodeInfo rootNodeInfo, mReceiveNode, mUnpackNode;
+    private String lastContentDescription = "";
+    private WeChatHouSaiLeiPresenter weChatPresenter = new WeChatHouSaiLeiPresenter();
+    private QQHouSaiLeiPresenter qqHouSaiLeiPresenter = new QQHouSaiLeiPresenter();
 
     @Override
     protected void initWeChatPresenter(AccessibilityEvent event) {

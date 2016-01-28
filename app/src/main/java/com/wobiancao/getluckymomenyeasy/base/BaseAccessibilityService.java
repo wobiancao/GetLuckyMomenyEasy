@@ -9,8 +9,6 @@ import com.wobiancao.getluckymomenyeasy.iview.IWechatView;
 import com.wobiancao.getluckymomenyeasy.presenter.QQHouSaiLeiPresenter;
 import com.wobiancao.getluckymomenyeasy.presenter.WeChatHouSaiLeiPresenter;
 
-import java.util.List;
-
 /**
  * Created by xy on 16/1/27.
  */
@@ -19,11 +17,7 @@ public abstract class BaseAccessibilityService extends AccessibilityService impl
     private final static String PACKAGENAME_WECAHT = "com.tencent.mm";
     protected abstract void initWeChatPresenter(AccessibilityEvent event);
     protected abstract void initQQPresenter(AccessibilityEvent event);
-    protected boolean mMutex , mLuckyMoneyReceived, mNeedUnpack, mNeedBack, mLuckyMoneyPicked;
-    protected AccessibilityNodeInfo rootNodeInfo, mReceiveNode, mUnpackNode;
-    protected String lastContentDescription = "";
-    protected WeChatHouSaiLeiPresenter weChatPresenter = new WeChatHouSaiLeiPresenter();
-    protected QQHouSaiLeiPresenter qqHouSaiLeiPresenter = new QQHouSaiLeiPresenter();
+
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         String packageName = event.getPackageName().toString();

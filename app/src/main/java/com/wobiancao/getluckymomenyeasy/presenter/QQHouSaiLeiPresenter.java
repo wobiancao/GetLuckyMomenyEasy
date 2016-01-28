@@ -29,19 +29,16 @@ public class QQHouSaiLeiPresenter extends BasePresenter<IWechatView> {
     private static final String QQ_BETTER_LUCK_EN = "Better luck next time!";
     private final static String QQ_RECEIVE_CLICK = "已存入余额";
     private final static String QQ_COME_FROM = "来自";
-    @Override
-    public void attachIView(IWechatView iWechatView) {
-        iv = iWechatView;
-    }
     /**服务接入**/
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    @Override
     public void accessibilityEvent(AccessibilityEvent event) {
         iv.setRootNodeInfo(event.getSource());
         if (iv.getRootNodeInfo() == null) {
             return;
         }
-        iv.setReceiveNode(null);
-        iv.setUnpackNode(null);
-        if (iv.isMutex()) {
+
+        if (!iv.isMutex()) {
             if (watchNotifications(event)) {
                 return;
             }
@@ -49,7 +46,11 @@ public class QQHouSaiLeiPresenter extends BasePresenter<IWechatView> {
                 return;
             }
         }
+        iv.setReceiveNode(null);
+        iv.setUnpackNode(null);
     }
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    @Override
     public void checkNodeInfo() {
         AccessibilityNodeInfo rootNodeInfo = iv.getRootNodeInfo();
         if (rootNodeInfo == null) {
@@ -96,10 +97,12 @@ public class QQHouSaiLeiPresenter extends BasePresenter<IWechatView> {
         }
 
     }
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    @Override
     public void doAction() {
           /* 如果已经接收到红包并且还没有戳开 */
         AccessibilityNodeInfo mReceiveNode = iv.getReceiveNode();
-        if (iv.isLuckyMoneyReceived()  && iv.isLuckyMoneyReceived() && (mReceiveNode != null)) {
+        if (iv.isLuckyMoneyReceived() && (mReceiveNode != null)) {
             AccessibilityNodeInfo cellNode = mReceiveNode;
                 if(signature.generateSignature(cellNode)){
 

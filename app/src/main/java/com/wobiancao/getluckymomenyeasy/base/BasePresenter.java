@@ -3,6 +3,7 @@ package com.wobiancao.getluckymomenyeasy.base;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
+import com.wobiancao.getluckymomenyeasy.iview.IWechatView;
 import com.wobiancao.getluckymomenyeasy.utils.HongbaoSignature;
 
 import java.util.ArrayList;
@@ -14,12 +15,11 @@ import java.util.List;
 public abstract class BasePresenter<IV extends BaseIView> {
     private static final String WECHAT_OPEN_EN = "Open";
     private static final String WECHAT_OPENED_EN = "You've opened";
-    protected IV iv;
+    protected IWechatView iv;
     protected HongbaoSignature signature = new HongbaoSignature();
     protected String lastFetchedHongbaoId = null;
     protected long lastFetchedTime = 0;
     protected static final int MAX_CACHE_TOLERANCE = 5000;
-    protected abstract void attachIView(IV iv);
     protected abstract void accessibilityEvent(AccessibilityEvent event);
     protected abstract void checkNodeInfo();
     protected abstract void doAction();
@@ -35,21 +35,25 @@ public abstract class BasePresenter<IV extends BaseIView> {
 
         return content;
     }
+
+    public void attachIView(IWechatView wechatView) {
+        iv = wechatView;
+    }
     /**
      * 判断是否返回,减少点击次数
      * 现在的策略是当红包文本和缓存不一致时,戳
      * 文本一致且间隔大于MAX_CACHE_TOLERANCE时,戳
      *
-     * @param mReceiveNode
+     * @param id
      * @param duration 红包到达与缓存的间隔
      * @return 是否应该返回
      */
-    protected boolean shouldReturn(AccessibilityNodeInfo mReceiveNode, long duration) {
+    protected boolean shouldReturn(String id, long duration) {
         // ID为空
-        if (mReceiveNode == null) return true;
+        if (id == null) return true;
 
         // 名称和缓存不一致
-        if (duration < MAX_CACHE_TOLERANCE && signature.generateSignature(mReceiveNode)) {
+        if (duration < MAX_CACHE_TOLERANCE && id.equals(lastFetchedHongbaoId)) {
             return true;
         }
         return false;
@@ -69,9 +73,6 @@ public abstract class BasePresenter<IV extends BaseIView> {
             List<AccessibilityNodeInfo> nodes = nodeInfo.findAccessibilityNodeInfosByText(text);
 
             if (!nodes.isEmpty()) {
-                if (text.equals(WECHAT_OPEN_EN) && !nodeInfo.findAccessibilityNodeInfosByText(WECHAT_OPENED_EN).isEmpty()) {
-                    continue;
-                }
                 return nodes;
             }
         }

@@ -1,7 +1,9 @@
 package com.wobiancao.getluckymomenyeasy.presenter;
 
+import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.PendingIntent;
+import android.os.Build;
 import android.os.Parcelable;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -27,19 +29,14 @@ public class WeChatHouSaiLeiPresenter extends BasePresenter<IWechatView> {
 
 
 
-    @Override
-    public void attachIView(IWechatView iHouSaiLeiView) {
-        iv = iHouSaiLeiView;
-    }
     /**服务接入**/
+    @Override
     public void accessibilityEvent(AccessibilityEvent event) {
         iv.setRootNodeInfo(event.getSource());
         if (iv.getRootNodeInfo() == null) {
             return;
         }
-        iv.setReceiveNode(null);
-        iv.setUnpackNode(null);
-        if (iv.isMutex()) {
+        if (!iv.isMutex()) {
             if (watchNotifications(event)) {
                 return;
             }
@@ -48,8 +45,13 @@ public class WeChatHouSaiLeiPresenter extends BasePresenter<IWechatView> {
             }
         }
 
-    }
+        iv.setReceiveNode(null);
+        iv.setUnpackNode(null);
 
+
+    }
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @Override
     public void checkNodeInfo() {
         AccessibilityNodeInfo rootNodeInfo = iv.getRootNodeInfo();
         if (rootNodeInfo == null) {
@@ -91,21 +93,32 @@ public class WeChatHouSaiLeiPresenter extends BasePresenter<IWechatView> {
             }
         }
     }
-
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    @Override
     public void doAction() {
-
-//         /* 如果已经接收到红包并且还没有戳开 */
+        /* 如果已经接收到红包并且还没有戳开 */
         AccessibilityNodeInfo mReceiveNode = iv.getReceiveNode();
-        if (iv.isLuckyMoneyPicked() && iv.isLuckyMoneyReceived() && mReceiveNode != null){
-            iv.setMutex(true);
-            AccessibilityNodeInfo cellNode = iv.getReceiveNode();
+        AccessibilityNodeInfo mUnpackNode  = iv.getUnpackNode();
+        if (iv.isLuckyMoneyReceived() && mReceiveNode != null){
+            String id = getHongbaoText(mReceiveNode);
+            long now = System.currentTimeMillis();
+            if (shouldReturn(id, now - lastFetchedTime)){
+                return;
+            }
+            lastFetchedHongbaoId = id;
+            lastFetchedTime = now;
+            AccessibilityNodeInfo cellNode = mReceiveNode;
+            if(signature.generateSignature(cellNode)){
+                return;
+            }
             cellNode.getParent().performAction(AccessibilityNodeInfo.ACTION_CLICK);
+            iv.setMutex(true);
             iv.setLuckyMoneyReceived(false);
             iv.setLuckyMoneyPicked(true);
         }
         /* 如果戳开但还未领取 */
-        if (iv.isNeedUnpack() && (iv.getUnpackNode() != null)) {
-            AccessibilityNodeInfo cellNode = iv.getUnpackNode();
+        if (iv.isNeedUnpack() && (mUnpackNode != null)) {
+            AccessibilityNodeInfo cellNode = mUnpackNode;
             cellNode.performAction(AccessibilityNodeInfo.ACTION_CLICK);
             iv.setNeedUnpack(false);
         }
