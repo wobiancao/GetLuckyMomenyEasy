@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         AccessibilityManager accessibilityManager = (AccessibilityManager) getSystemService(Context.ACCESSIBILITY_SERVICE);
         List<AccessibilityServiceInfo> accessibilityServices = accessibilityManager.getEnabledAccessibilityServiceList(AccessibilityServiceInfo.FEEDBACK_GENERIC);
         for (AccessibilityServiceInfo info : accessibilityServices) {
-            if (info.getId().equals(getPackageName() + "/.service.HouSaiLeiService")) {
+            if (info.getId().equals(getPackageName() + "/.service.HouSaiLeiNewService")) {
                 serviceEnabled = true;
                 break;
             }

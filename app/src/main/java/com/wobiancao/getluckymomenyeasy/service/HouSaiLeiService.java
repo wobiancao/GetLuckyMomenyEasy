@@ -89,49 +89,49 @@ public class HouSaiLeiService extends AccessibilityService {
         mReceiveNode = null;
         checkNodeInfo();
            /* 如果已经接收到红包并且还没有戳开 */
-           if (mLuckyMoneyReceived && (mReceiveNode != null)) {
-               int size = mReceiveNode.size();
-               if (size > 0) {
-                   String id = getHongbaoText(mReceiveNode.get(size - 1));
-                   long now = System.currentTimeMillis();
-                   if (this.shouldReturn(id, now - lastFetchedTime)){
-                       return;
-                   }
-                   lastFetchedHongbaoId = id;
-                   lastFetchedTime = now;
-                   AccessibilityNodeInfo cellNode = mReceiveNode.get(size - 1);
-                   if (isQQ){
-                       if (cellNode.getText().toString().equals(QQ_HONG_BAO_PASSWORD_OPENED)) {
-                           return;
-                       }
-                   }
-                   cellNode.getParent().performAction(AccessibilityNodeInfo.ACTION_CLICK);
-                   if (isQQ){
-                       if (cellNode.getText().toString().equals(QQ_HONG_BAO_PASSWORD)) {
-                           AccessibilityNodeInfo rowNode = getRootInActiveWindow();
-                           if (rowNode == null) {
-                               L.e(TAG, "noteInfo is null");
-                               return;
-                           } else {
-                               recycle(rowNode);
-                           }
-                       }
-                   }
-                   mLuckyMoneyReceived = false;
-                   mLuckyMoneyPicked = true;
-               }
-           }
+        if (mLuckyMoneyReceived && (mReceiveNode != null)) {
+            int size = mReceiveNode.size();
+            if (size > 0) {
+                String id = getHongbaoText(mReceiveNode.get(size - 1));
+                long now = System.currentTimeMillis();
+                if (this.shouldReturn(id, now - lastFetchedTime)){
+                    return;
+                }
+                lastFetchedHongbaoId = id;
+                lastFetchedTime = now;
+                AccessibilityNodeInfo cellNode = mReceiveNode.get(size - 1);
+                if (isQQ){
+                    if (cellNode.getText().toString().equals(QQ_HONG_BAO_PASSWORD_OPENED)) {
+                        return;
+                    }
+                }
+                cellNode.getParent().performAction(AccessibilityNodeInfo.ACTION_CLICK);
+                if (isQQ){
+                    if (cellNode.getText().toString().equals(QQ_HONG_BAO_PASSWORD)) {
+                        AccessibilityNodeInfo rowNode = getRootInActiveWindow();
+                        if (rowNode == null) {
+                            L.e(TAG, "noteInfo is null");
+                            return;
+                        } else {
+                            recycle(rowNode);
+                        }
+                    }
+                }
+                mLuckyMoneyReceived = false;
+                mLuckyMoneyPicked = true;
+            }
+        }
              /* 如果戳开但还未领取 */
-           if (mNeedUnpack && (mUnpackNode != null)) {
-               AccessibilityNodeInfo cellNode = mUnpackNode;
-               cellNode.performAction(AccessibilityNodeInfo.ACTION_CLICK);
-               mNeedUnpack = false;
-           }
-           if (mNeedBack) {
-               performGlobalAction(GLOBAL_ACTION_BACK);
-               mMutex = false;
-               mNeedBack = false;
-           }
+        if (mNeedUnpack && (mUnpackNode != null)) {
+            AccessibilityNodeInfo cellNode = mUnpackNode;
+            cellNode.performAction(AccessibilityNodeInfo.ACTION_CLICK);
+            mNeedUnpack = false;
+        }
+        if (mNeedBack) {
+            performGlobalAction(GLOBAL_ACTION_BACK);
+            mMutex = false;
+            mNeedBack = false;
+        }
 
 
 
