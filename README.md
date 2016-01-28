@@ -22,5 +22,10 @@ QQ and Wechat 抢红包插件 for Android
 
 app试用地址：http://pre.im/housailei
 豌豆荚地址：http://www.wandoujia.com/apps/com.wobiancao.getluckymomenyeasy
+
 扫描二维码可下载
 ![qr.png](http://www.wandoujia.com/qr?s=5&c=http://www.wandoujia.com/apps/com.wobiancao.getluckymomenyeasy)
+
+`附上本人支付宝，抢得多的，不介意可以来一点^ - ^`
+
+![22D0A666-95B4-432F-96CC-55043F6D34E3.png](http://upload-images.jianshu.io/upload_images/1216032-d402c7d587615841.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
