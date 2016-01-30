@@ -2,7 +2,6 @@
 世上没有什么是一颗猴赛雷不能解决的，如果有，那就两颗
 QQ and Wechat 抢红包插件 for Android
 
-![S60126-135354.jpg](http://upload-images.jianshu.io/upload_images/1216032-acd00740633199ae.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 这个app就是自己玩玩，代码就在那儿，能抢微信和qq的红包，不做商用，学习的开源代码233，最近抢红包比较火，又不敢用别人做的，所以还是自己做了一个。加了友盟更新，其它什么都没了。
 先看截图
 
@@ -21,6 +20,8 @@ app试用地址：http://pre.im/housailei
 
 扫描二维码可下载
 ![qr.png](http://www.wandoujia.com/qr?s=5&c=http://www.wandoujia.com/apps/com.wobiancao.getluckymomenyeasy)
+
+PP助手下载 http://m.pp.cn/detail.html?appid=6762766&ch_src=pp_dev&ch=default
 
 `附上本人支付宝，抢得多的，不介意可以来一点^ - ^`
 
