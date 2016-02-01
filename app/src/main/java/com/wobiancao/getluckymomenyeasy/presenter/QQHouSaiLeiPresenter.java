@@ -9,16 +9,17 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 import com.wobiancao.getluckymomenyeasy.base.BasePresenter;
-import com.wobiancao.getluckymomenyeasy.iview.IWechatView;
+import com.wobiancao.getluckymomenyeasy.iview.IHongBaoView;
 
 import java.util.List;
 
 /**
  * Created by xy on 16/1/28.
  */
-public class QQHouSaiLeiPresenter extends BasePresenter<IWechatView> {
+public class QQHouSaiLeiPresenter extends BasePresenter<IHongBaoView> {
     private final static String QQ_NOTIFICATION_TIP = "[QQ红包]";
     private final static String QQ_DEFAULT_CLICK_OPEN = "点击拆开";
+    public static final String  QQ_SPECIAL_UNCLICK_TEXT = "QQ红包个性版";
     private final static String QQ_HONG_BAO_PASSWORD = "口令红包";
     private final static String QQ_DEFAULT_CLICK_OPENED = "已拆开";
     private final static String QQ_HONG_BAO_PASSWORD_OPENED = "口令红包已拆开";
@@ -60,6 +61,7 @@ public class QQHouSaiLeiPresenter extends BasePresenter<IWechatView> {
         List<AccessibilityNodeInfo> nodes1 = findAccessibilityNodeInfosByTexts(rootNodeInfo, new String[]{
                 QQ_DEFAULT_CLICK_OPEN,
                 QQ_HONG_BAO_PASSWORD,
+                QQ_SPECIAL_UNCLICK_TEXT,
                 QQ_CLICK_TO_PASTE_PASSWORD, "发送"});
 
         if (!nodes1.isEmpty()) {

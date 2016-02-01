@@ -9,14 +9,14 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 import com.wobiancao.getluckymomenyeasy.base.BasePresenter;
-import com.wobiancao.getluckymomenyeasy.iview.IWechatView;
+import com.wobiancao.getluckymomenyeasy.iview.IHongBaoView;
 
 import java.util.List;
 
 /**
  * Created by xy on 16/1/27.
  */
-public class WeChatHouSaiLeiPresenter extends BasePresenter<IWechatView> {
+public class WeChatHouSaiLeiPresenter extends BasePresenter<IHongBaoView> {
     private static final String WECHAT_VIEW_SELF_CH = "查看红包";
     private static final String WECHAT_VIEW_OTHERS_CH = "领取红包";
     private static final String WECHAT_BETTER_LUCK_CH = "手慢了";

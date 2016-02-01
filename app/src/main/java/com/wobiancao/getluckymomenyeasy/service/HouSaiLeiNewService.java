@@ -4,19 +4,21 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
 import com.wobiancao.getluckymomenyeasy.base.BaseAccessibilityService;
+import com.wobiancao.getluckymomenyeasy.presenter.AliPayHouSaiLeiPresenter;
 import com.wobiancao.getluckymomenyeasy.presenter.QQHouSaiLeiPresenter;
 import com.wobiancao.getluckymomenyeasy.presenter.WeChatHouSaiLeiPresenter;
+import com.wobiancao.getluckymomenyeasy.utils.L;
 
 /**
  * Created by xy on 16/1/27.
  */
 public class HouSaiLeiNewService extends BaseAccessibilityService {
     private boolean mMutex , mLuckyMoneyReceived, mNeedUnpack, mNeedBack, mLuckyMoneyPicked;
-    private AccessibilityNodeInfo rootNodeInfo, mReceiveNode, mUnpackNode;
+    private AccessibilityNodeInfo rootNodeInfo, mReceiveNode, mUnpackNode, aliRootNodeInfo;
     private String lastContentDescription = "";
     private WeChatHouSaiLeiPresenter weChatPresenter = new WeChatHouSaiLeiPresenter();
     private QQHouSaiLeiPresenter qqHouSaiLeiPresenter = new QQHouSaiLeiPresenter();
-
+    private AliPayHouSaiLeiPresenter aliPayHouSaiLeiPresenter = new AliPayHouSaiLeiPresenter();
     @Override
     protected void initWeChatPresenter(AccessibilityEvent event) {
         weChatPresenter.attachIView(this);
@@ -31,6 +33,15 @@ public class HouSaiLeiNewService extends BaseAccessibilityService {
         qqHouSaiLeiPresenter.accessibilityEvent(event);
         qqHouSaiLeiPresenter.checkNodeInfo();
         qqHouSaiLeiPresenter.doAction();
+
+    }
+
+    @Override
+    protected void initAliPresenter(AccessibilityEvent event) {
+        aliPayHouSaiLeiPresenter.attachAliIView(this);
+        aliPayHouSaiLeiPresenter.accessibilityEvent(event);
+//        aliPayHouSaiLeiPresenter.checkNodeInfo();
+        aliPayHouSaiLeiPresenter.doAction();
 
     }
 
@@ -135,6 +146,23 @@ public class HouSaiLeiNewService extends BaseAccessibilityService {
 
     @Override
     public AccessibilityNodeInfo getRootInActiveWindows() {
+        return getRootInActiveWindow();
+    }
+
+
+    @Override
+    public void setAliRootNodeInfo(AccessibilityNodeInfo rootNodeInfo) {
+        L.e("aliRootNodeInfo", rootNodeInfo.toString() + "");
+        this.aliRootNodeInfo = rootNodeInfo;
+    }
+
+    @Override
+    public AccessibilityNodeInfo getAliRootNodeInfo() {
+        return aliRootNodeInfo;
+    }
+
+    @Override
+    public AccessibilityNodeInfo getAliRootInActiveWindows() {
         return getRootInActiveWindow();
     }
 }

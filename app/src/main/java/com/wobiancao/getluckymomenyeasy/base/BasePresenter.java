@@ -3,7 +3,8 @@ package com.wobiancao.getluckymomenyeasy.base;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import com.wobiancao.getluckymomenyeasy.iview.IWechatView;
+import com.wobiancao.getluckymomenyeasy.iview.IAliPayView;
+import com.wobiancao.getluckymomenyeasy.iview.IHongBaoView;
 import com.wobiancao.getluckymomenyeasy.utils.HongbaoSignature;
 
 import java.util.ArrayList;
@@ -15,7 +16,8 @@ import java.util.List;
 public abstract class BasePresenter<IV extends BaseIView> {
     private static final String WECHAT_OPEN_EN = "Open";
     private static final String WECHAT_OPENED_EN = "You've opened";
-    protected IWechatView iv;
+    protected IHongBaoView iv;
+    protected IAliPayView aliView;
     protected HongbaoSignature signature = new HongbaoSignature();
     protected String lastFetchedHongbaoId = null;
     protected long lastFetchedTime = 0;
@@ -36,8 +38,12 @@ public abstract class BasePresenter<IV extends BaseIView> {
         return content;
     }
 
-    public void attachIView(IWechatView wechatView) {
-        iv = wechatView;
+    public void attachIView(IHongBaoView honbaoView) {
+        iv = honbaoView;
+    }
+    /**支付宝**/
+    public void attachAliIView(IAliPayView iAliPayView) {
+        aliView = iAliPayView;
     }
     /**
      * 判断是否返回,减少点击次数

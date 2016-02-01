@@ -2,34 +2,43 @@ package com.wobiancao.getluckymomenyeasy.base;
 
 import android.accessibilityservice.AccessibilityService;
 import android.view.accessibility.AccessibilityEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Toast;
 
-import com.wobiancao.getluckymomenyeasy.iview.IWechatView;
-import com.wobiancao.getluckymomenyeasy.presenter.QQHouSaiLeiPresenter;
-import com.wobiancao.getluckymomenyeasy.presenter.WeChatHouSaiLeiPresenter;
+import com.wobiancao.getluckymomenyeasy.iview.IAliPayView;
+import com.wobiancao.getluckymomenyeasy.iview.IHongBaoView;
+import com.wobiancao.getluckymomenyeasy.utils.L;
 
 /**
  * Created by xy on 16/1/27.
  */
-public abstract class BaseAccessibilityService extends AccessibilityService implements IWechatView {
-    private final static String PACKAGENAME_QQ = "com.tencent.mobileqq";
-    private final static String PACKAGENAME_WECAHT = "com.tencent.mm";
+public abstract class BaseAccessibilityService extends AccessibilityService implements IHongBaoView ,IAliPayView{
+    private final static String PACKAGENAME_QQ = "com.tencent.mobileqq";//qq
+    private final static String PACKAGENAME_WECAHT = "com.tencent.mm";//微信
+    private final static String PACKAGENAME_ALIPAY = "com.eg.android.AlipayGphone";//支付宝
     protected abstract void initWeChatPresenter(AccessibilityEvent event);
     protected abstract void initQQPresenter(AccessibilityEvent event);
-
+    protected abstract void initAliPresenter(AccessibilityEvent event);
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
+        L.e("event", event.toString() + "");
         String packageName = event.getPackageName().toString();
+        L.e("packageName", packageName);
         if (PACKAGENAME_QQ.equals(packageName)){
             initQQPresenter(event);
         }
         if (PACKAGENAME_WECAHT.equals(packageName)){
             initWeChatPresenter(event);
         }
+        if(PACKAGENAME_ALIPAY.equals(packageName)){
+            initAliPresenter(event);
+        }
 
     }
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
     @Override
     protected void onServiceConnected() {
         super.onServiceConnected();
@@ -40,4 +49,5 @@ public abstract class BaseAccessibilityService extends AccessibilityService impl
     public void onInterrupt() {
         Toast.makeText(this, "猴赛雷抢红包服务已中断", Toast.LENGTH_SHORT).show();
     }
+
 }

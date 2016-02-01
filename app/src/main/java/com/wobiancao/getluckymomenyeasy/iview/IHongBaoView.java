@@ -10,7 +10,7 @@ import java.util.List;
  * Created by xy on 16/1/27.
  * 接口
  */
-public interface IWechatView extends BaseIView{
+public interface IHongBaoView extends BaseIView{
     void setLastContentDescription(String contentDescription);
     String getLastContentDescription();
 
