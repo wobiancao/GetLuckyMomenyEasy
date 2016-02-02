@@ -11,7 +11,7 @@ import com.wobiancao.getluckymomenyeasy.utils.L;
  * Created by xy on 16/1/30.
  */
 public class AliPayHouSaiLeiPresenter extends BasePresenter<IAliPayView> {
-    private static final String  XIUXIU_CLASSNAME = "com.alipay.android.wallet.newyear.activity.MonkeyYearActivity";
+    private static final String  XIUXIU_CLASSNAME = "com.alipay.mobile.xiuxiu.ui.MainActivity";
     private static final String  XIUXIU_TEXT_VIEW = "android.widget.TextView";
     private static final String  XIUXIU_BUTTON_VIEW = "android.widget.Button";
     private boolean isXiu = false;
@@ -55,14 +55,12 @@ public class AliPayHouSaiLeiPresenter extends BasePresenter<IAliPayView> {
                                 try {
                                     Thread.sleep(100);
                                 } catch (InterruptedException e) {
-                                    L.e("package", "有异常？");
                                 }
                             } while (isXiu);
                         }
                     }) .start();
                 }
             }else {
-                L.e("package", "看起来不在咻页面");
             }
 
     }
