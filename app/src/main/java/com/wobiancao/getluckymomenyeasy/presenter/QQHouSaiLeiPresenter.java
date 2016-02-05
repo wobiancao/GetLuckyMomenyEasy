@@ -64,7 +64,6 @@ public class QQHouSaiLeiPresenter extends BasePresenter<IHongBaoView> {
                 QQ_SPECIAL_UNCLICK_TEXT,
                 QQ_CLICK_TO_PASTE_PASSWORD, "发送"});
 
-        if (!nodes1.isEmpty()) {
             if (!nodes1.isEmpty()) {
                 AccessibilityNodeInfo targetNode = nodes1.get(nodes1.size() - 1);
                 if (signature.generateSignature(targetNode)) {
@@ -73,7 +72,6 @@ public class QQHouSaiLeiPresenter extends BasePresenter<IHongBaoView> {
                 }
                 return;
             }
-        }
          /* 戳开红包，红包还没抢完，遍历节点匹配“拆红包” */
         AccessibilityNodeInfo node2 = (rootNodeInfo.getChildCount() > 3) ? rootNodeInfo.getChild(3) : null;
         if (node2 != null && node2.getClassName().equals("android.widget.Button")) {

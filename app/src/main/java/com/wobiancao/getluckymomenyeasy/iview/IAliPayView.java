@@ -8,8 +8,8 @@ import com.wobiancao.getluckymomenyeasy.base.BaseIView;
  * Created by xy on 16/1/30.
  */
 public interface IAliPayView extends BaseIView{
-    void setAliRootNodeInfo(AccessibilityNodeInfo rootNodeInfo);
-    AccessibilityNodeInfo getAliRootNodeInfo();
+    void setAliNodeInfo(AccessibilityNodeInfo nodeInfo);
+    AccessibilityNodeInfo getAliNode();
     AccessibilityNodeInfo getAliRootInActiveWindows();
 
 }

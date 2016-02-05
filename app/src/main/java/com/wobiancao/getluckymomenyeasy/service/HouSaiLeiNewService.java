@@ -14,7 +14,7 @@ import com.wobiancao.getluckymomenyeasy.utils.L;
  */
 public class HouSaiLeiNewService extends BaseAccessibilityService {
     private boolean mMutex , mLuckyMoneyReceived, mNeedUnpack, mNeedBack, mLuckyMoneyPicked;
-    private AccessibilityNodeInfo rootNodeInfo, mReceiveNode, mUnpackNode, aliRootNodeInfo;
+    private AccessibilityNodeInfo rootNodeInfo, mReceiveNode, mUnpackNode, aliNodeInfo;
     private String lastContentDescription = "";
     private WeChatHouSaiLeiPresenter weChatPresenter = new WeChatHouSaiLeiPresenter();
     private QQHouSaiLeiPresenter qqHouSaiLeiPresenter = new QQHouSaiLeiPresenter();
@@ -40,7 +40,7 @@ public class HouSaiLeiNewService extends BaseAccessibilityService {
     protected void initAliPresenter(AccessibilityEvent event) {
         aliPayHouSaiLeiPresenter.attachAliIView(this);
         aliPayHouSaiLeiPresenter.accessibilityEvent(event);
-//        aliPayHouSaiLeiPresenter.checkNodeInfo();
+        aliPayHouSaiLeiPresenter.checkNodeInfo();
         aliPayHouSaiLeiPresenter.doAction();
 
     }
@@ -149,17 +149,16 @@ public class HouSaiLeiNewService extends BaseAccessibilityService {
         return getRootInActiveWindow();
     }
 
-
     @Override
-    public void setAliRootNodeInfo(AccessibilityNodeInfo rootNodeInfo) {
-        L.e("aliRootNodeInfo", rootNodeInfo.toString() + "");
-        this.aliRootNodeInfo = rootNodeInfo;
+    public void setAliNodeInfo(AccessibilityNodeInfo nodeInfo) {
+        this.aliNodeInfo = rootNodeInfo;
     }
 
     @Override
-    public AccessibilityNodeInfo getAliRootNodeInfo() {
-        return aliRootNodeInfo;
+    public AccessibilityNodeInfo getAliNode() {
+        return aliNodeInfo;
     }
+
 
     @Override
     public AccessibilityNodeInfo getAliRootInActiveWindows() {
