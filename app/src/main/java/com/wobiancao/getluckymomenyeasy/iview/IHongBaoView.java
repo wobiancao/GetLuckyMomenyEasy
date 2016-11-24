@@ -39,6 +39,9 @@ public interface IHongBaoView extends BaseIView{
     void setMutex(boolean mMutex);
     boolean isMutex();
 
+    void setChatMutex(boolean mChatMutex);
+    boolean isChatMutex();
+
     void needBack();
 
     AccessibilityNodeInfo getRootInActiveWindows();

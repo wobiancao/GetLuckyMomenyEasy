@@ -14,10 +14,8 @@ import com.wobiancao.getluckymomenyeasy.utils.L;
 public abstract class BaseAccessibilityService extends AccessibilityService implements IHongBaoView ,IAliPayView{
     private final static String PACKAGENAME_QQ = "com.tencent.mobileqq";//qq
     private final static String PACKAGENAME_WECAHT = "com.tencent.mm";//微信
-    private final static String PACKAGENAME_ALIPAY = "com.eg.android.AlipayGphone";//支付宝
     protected abstract void initWeChatPresenter(AccessibilityEvent event);
     protected abstract void initQQPresenter(AccessibilityEvent event);
-    protected abstract void initAliPresenter(AccessibilityEvent event);
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         L.e("event", event.toString() + "");
@@ -29,9 +27,7 @@ public abstract class BaseAccessibilityService extends AccessibilityService impl
         if (PACKAGENAME_WECAHT.equals(packageName)){
             initWeChatPresenter(event);
         }
-        if(PACKAGENAME_ALIPAY.equals(packageName)){
-            initAliPresenter(event);
-        }
+
 
     }
 

@@ -1,5 +1,6 @@
 package com.wobiancao.getluckymomenyeasy.base;
 
+import android.accessibilityservice.AccessibilityService;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 

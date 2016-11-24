@@ -38,6 +38,7 @@ public class QQHouSaiLeiPresenter extends BasePresenter<IHongBaoView> {
         if (iv.getRootNodeInfo() == null) {
             return;
         }
+        iv.setNeedBack(false);
 
         if (!iv.isMutex()) {
             if (watchNotifications(event)) {
@@ -46,10 +47,12 @@ public class QQHouSaiLeiPresenter extends BasePresenter<IHongBaoView> {
             if (watchList(event)){
                 return;
             }
+            iv.setMutex(false);
         }
         iv.setReceiveNode(null);
         iv.setUnpackNode(null);
     }
+
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     public void checkNodeInfo() {

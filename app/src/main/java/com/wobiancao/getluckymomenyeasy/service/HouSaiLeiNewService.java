@@ -1,5 +1,6 @@
 package com.wobiancao.getluckymomenyeasy.service;
 
+import android.accessibilityservice.AccessibilityService;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
@@ -7,13 +8,12 @@ import com.wobiancao.getluckymomenyeasy.base.BaseAccessibilityService;
 import com.wobiancao.getluckymomenyeasy.presenter.AliPayHouSaiLeiPresenter;
 import com.wobiancao.getluckymomenyeasy.presenter.QQHouSaiLeiPresenter;
 import com.wobiancao.getluckymomenyeasy.presenter.WeChatHouSaiLeiPresenter;
-import com.wobiancao.getluckymomenyeasy.utils.L;
 
 /**
  * Created by xy on 16/1/27.
  */
 public class HouSaiLeiNewService extends BaseAccessibilityService {
-    private boolean mMutex , mLuckyMoneyReceived, mNeedUnpack, mNeedBack, mLuckyMoneyPicked;
+    private boolean mMutex , mChatMutex, mLuckyMoneyReceived, mNeedUnpack, mNeedBack, mLuckyMoneyPicked;
     private AccessibilityNodeInfo rootNodeInfo, mReceiveNode, mUnpackNode, aliNodeInfo;
     private String lastContentDescription = "";
     private WeChatHouSaiLeiPresenter weChatPresenter = new WeChatHouSaiLeiPresenter();
@@ -36,14 +36,6 @@ public class HouSaiLeiNewService extends BaseAccessibilityService {
 
     }
 
-    @Override
-    protected void initAliPresenter(AccessibilityEvent event) {
-        aliPayHouSaiLeiPresenter.attachAliIView(this);
-        aliPayHouSaiLeiPresenter.accessibilityEvent(event);
-        aliPayHouSaiLeiPresenter.checkNodeInfo();
-        aliPayHouSaiLeiPresenter.doAction();
-
-    }
 
 
     @Override
@@ -135,6 +127,16 @@ public class HouSaiLeiNewService extends BaseAccessibilityService {
     @Override
     public boolean isMutex() {
         return mMutex;
+    }
+
+    @Override
+    public void setChatMutex(boolean mChatMutex) {
+        this.mChatMutex = mChatMutex;
+    }
+
+    @Override
+    public boolean isChatMutex() {
+        return mChatMutex;
     }
 
     @Override

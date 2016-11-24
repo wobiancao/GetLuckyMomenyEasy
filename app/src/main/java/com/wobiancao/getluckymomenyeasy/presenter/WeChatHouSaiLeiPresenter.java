@@ -23,11 +23,13 @@ public class WeChatHouSaiLeiPresenter extends BasePresenter<IHongBaoView> {
     private static final String WECHAT_BETTER_LUCK_EN = "Better luck next time!";
     private static final String WECHAT_DETAILS_EN = "Details";
     private static final String WECHAT_DETAILS_CH = "红包详情";
-    private static final String WECHAT_EXPIRES_CH = "红包已失效";
     private static final String WECHAT_EXPIRES_OVER = "红包派完了";
     private final static String WECHAT_NOTIFICATION_TIP = "[微信红包]";
-
-
+    private static final String WECHAT_EXPIRES_CH = "已超过24小时";
+    private static final String WECHAT_LUCKMONEY_RECEIVE_ACTIVITY = "LuckyMoneyReceiveUI";
+    private static final String WECHAT_LUCKMONEY_DETAIL_ACTIVITY = "LuckyMoneyDetailUI";
+    private static final String WECHAT_LUCKMONEY_GENERAL_ACTIVITY = "LauncherUI";
+    private static final String WECHAT_LUCKMONEY_CHATTING_ACTIVITY = "ChattingUI";
 
     /**服务接入**/
     @Override
@@ -36,6 +38,7 @@ public class WeChatHouSaiLeiPresenter extends BasePresenter<IHongBaoView> {
         if (iv.getRootNodeInfo() == null) {
             return;
         }
+        iv.setNeedBack(false);
         if (!iv.isMutex()) {
             if (watchNotifications(event)) {
                 return;
@@ -43,13 +46,15 @@ public class WeChatHouSaiLeiPresenter extends BasePresenter<IHongBaoView> {
             if (watchList(event)){
                 return;
             }
+            iv.setMutex(false);
         }
-
         iv.setReceiveNode(null);
         iv.setUnpackNode(null);
-
-
     }
+
+
+
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void checkNodeInfo() {

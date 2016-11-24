@@ -5,5 +5,5 @@
     android:accessibilityFlags=""
     android:canRetrieveWindowContent="true"
     android:description="@string/app_description"
-    android:notificationTimeout="100"
-    android:packageNames="com.tencent.mobileqq,com.tencent.mm,com.eg.android.AlipayGphone" />
+    android:notificationTimeout="10"
+    android:packageNames="com.tencent.mobileqq,com.tencent.mm" />
