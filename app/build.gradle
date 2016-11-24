@@ -8,8 +8,8 @@ android {
         applicationId "com.wobiancao.getluckymomenyeasy"
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 8
-        versionName "2.3"
+        versionCode 10
+        versionName "2.5"
     }
     buildTypes {
         release {

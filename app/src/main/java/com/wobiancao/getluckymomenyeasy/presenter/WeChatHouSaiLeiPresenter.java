@@ -26,6 +26,7 @@ public class WeChatHouSaiLeiPresenter extends BasePresenter<IHongBaoView> {
     private static final String WECHAT_EXPIRES_OVER = "红包派完了";
     private final static String WECHAT_NOTIFICATION_TIP = "[微信红包]";
     private static final String WECHAT_EXPIRES_CH = "已超过24小时";
+    private static final String WECHAT_RECEIVE_CH = "你领取了";
     private static final String WECHAT_LUCKMONEY_RECEIVE_ACTIVITY = "LuckyMoneyReceiveUI";
     private static final String WECHAT_LUCKMONEY_DETAIL_ACTIVITY = "LuckyMoneyDetailUI";
     private static final String WECHAT_LUCKMONEY_GENERAL_ACTIVITY = "LauncherUI";
@@ -114,6 +115,9 @@ public class WeChatHouSaiLeiPresenter extends BasePresenter<IHongBaoView> {
             lastFetchedTime = now;
             AccessibilityNodeInfo cellNode = mReceiveNode;
             if(signature.generateSignature(cellNode)){
+                return;
+            }
+            if (cellNode.getText().toString().equals(WECHAT_RECEIVE_CH)) {
                 return;
             }
             cellNode.getParent().performAction(AccessibilityNodeInfo.ACTION_CLICK);

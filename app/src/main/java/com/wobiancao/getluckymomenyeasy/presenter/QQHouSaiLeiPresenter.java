@@ -69,19 +69,13 @@ public class QQHouSaiLeiPresenter extends BasePresenter<IHongBaoView> {
 
             if (!nodes1.isEmpty()) {
                 AccessibilityNodeInfo targetNode = nodes1.get(nodes1.size() - 1);
-                if (signature.generateSignature(targetNode)) {
+                if (!signature.generateSignature(targetNode)) {
                     iv.setLuckyMoneyReceived(true);
                     iv.setReceiveNode(targetNode);
                 }
                 return;
             }
-         /* 戳开红包，红包还没抢完，遍历节点匹配“拆红包” */
-        AccessibilityNodeInfo node2 = (rootNodeInfo.getChildCount() > 3) ? rootNodeInfo.getChild(3) : null;
-        if (node2 != null && node2.getClassName().equals("android.widget.Button")) {
-            iv.setUnpackNode(node2);
-            iv.setNeedUnpack(true);
-            return;
-        }
+
         /* 戳开红包，红包已被抢完，遍历节点匹配“红包详情”和“手慢了” */
         if (iv.isLuckyMoneyPicked()) {
             List<AccessibilityNodeInfo> nodes3 = this.findAccessibilityNodeInfosByTexts(rootNodeInfo, new String[]{
@@ -105,18 +99,23 @@ public class QQHouSaiLeiPresenter extends BasePresenter<IHongBaoView> {
     public void doAction() {
           /* 如果已经接收到红包并且还没有戳开 */
         AccessibilityNodeInfo mReceiveNode = iv.getReceiveNode();
+        AccessibilityNodeInfo mUnpackNode  = iv.getUnpackNode();
         if (iv.isLuckyMoneyReceived() && (mReceiveNode != null)) {
+            String id = getHongbaoText(mReceiveNode);
+            long now = System.currentTimeMillis();
+            if (shouldReturn(id, now - lastFetchedTime)){
+                return;
+            }
+            lastFetchedHongbaoId = id;
+            lastFetchedTime = now;
             AccessibilityNodeInfo cellNode = mReceiveNode;
-                if(signature.generateSignature(cellNode)){
-
+            if(signature.generateSignature(cellNode)){
                     return;
                 }
                 if (cellNode.getText().toString().equals(QQ_HONG_BAO_PASSWORD_OPENED)) {
-
                     return;
                 }
                 if (cellNode.getText().toString().equals(QQ_DEFAULT_CLICK_OPENED)) {
-
                     return;
                 }
                 cellNode.getParent().performAction(AccessibilityNodeInfo.ACTION_CLICK);
@@ -134,8 +133,8 @@ public class QQHouSaiLeiPresenter extends BasePresenter<IHongBaoView> {
                 iv.setLuckyMoneyPicked(true);
             }
         /* 如果戳开但还未领取 */
-        if (iv.isNeedUnpack() && (iv.getUnpackNode() != null)) {
-            AccessibilityNodeInfo cellNode = iv.getUnpackNode();
+        if (iv.isNeedUnpack() && (mUnpackNode != null)) {
+            AccessibilityNodeInfo cellNode = mUnpackNode;
             cellNode.performAction(AccessibilityNodeInfo.ACTION_CLICK);
             iv.setNeedUnpack(false);
         }
