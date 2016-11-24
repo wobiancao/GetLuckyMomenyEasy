@@ -39,22 +39,12 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessible_service_config"/>
         </service>
-        <service
-            android:name="com.umeng.update.net.DownloadingService"
-            android:process=":DownloadingService">
-        </service>
-
-        <activity
-            android:name="com.umeng.update.UpdateDialogActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar">
-        </activity>
 
         <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="56a6efad67e58e46a9002e5a"/>
-        <meta-data
-            android:name="UMENG_CHANNEL"
-            android:value="pgyer"/>
+            android:name="PGYER_APPID"
+            android:value="30bb2a7401002fe423ed1777a8056be3" >
+        </meta-data>
+
     </application>
 
 </manifest>

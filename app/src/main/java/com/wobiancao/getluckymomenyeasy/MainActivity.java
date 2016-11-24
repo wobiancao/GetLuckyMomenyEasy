@@ -12,7 +12,8 @@ import android.view.WindowManager;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
 
-import com.umeng.update.UmengUpdateAgent;
+
+import com.pgyersdk.update.PgyUpdateManager;
 
 import java.util.List;
 
@@ -22,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        PgyUpdateManager.register(this);
         initView();
-        UmengUpdateAgent.update(this);
     }
 
     private void initView() {

@@ -8,8 +8,8 @@ android {
         applicationId "com.wobiancao.getluckymomenyeasy"
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 10
-        versionName "2.5"
+        versionCode 11
+        versionName "2.6"
     }
     buildTypes {
         release {
@@ -28,5 +28,6 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
+    compile 'com.pgyersdk:sdk:2.4.0'
     compile 'com.android.support:appcompat-v7:25.0.0'
 }
