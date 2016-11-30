@@ -2,15 +2,21 @@ package com.wobiancao.getluckymomenyeasy;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.LinearLayout;
+
+import com.wandoujia.ads.sdk.Ads;
+import com.wobiancao.getluckymomenyeasy.utils.StaticFiled;
 
 /**
  * Created by xy on 16/1/26.
  */
 public class StartActivity extends Activity {
-    private final int DISPLAY_TIME = 3000;//延迟时间
+    private final int DISPLAY_TIME = 1500;//延迟时间
     private Handler handler = new Handler();
     private Runnable runnable;
     @Override
@@ -31,4 +37,6 @@ public class StartActivity extends Activity {
         };
         handler.postDelayed(runnable, DISPLAY_TIME );
     }
+
+
 }

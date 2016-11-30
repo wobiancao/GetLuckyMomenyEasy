@@ -4,29 +4,56 @@
                 android:layout_height="match_parent"
                 android:background="@color/activity_bg"
                 tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+    <FrameLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
         android:layout_alignParentTop="true"
-        android:autoText="false"
-        android:background="@mipmap/bg_action_bar"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="@string/app_name"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/textTitleColor"
-        android:textSize="26dp"/>
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:autoText="false"
+            android:background="@mipmap/bg_action_bar"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/app_name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/textTitleColor"
+            android:textSize="26dp"/>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center|bottom"
+            android:alpha="80"
+            android:scaleType="centerInside"
+            android:src="@mipmap/icon_hou"/>
+        <ImageView
+            android:onClick="onPingClick"
+            android:layout_width="wrap_content"
+            android:src="@drawable/icon_ad"
+            android:layout_gravity="right"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:id="@+id/main_adlayout"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:alpha="80"
-        android:scaleType="centerInside"
-        android:src="@mipmap/icon_hou"/>
+    <ScrollView
+        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:layout_below="@+id/top_layout"
+        android:layout_centerInParent="true"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
 
     <TextView
         android:id="@+id/text_use"
@@ -35,7 +62,7 @@
         android:layout_below="@+id/imageView"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="5dp"
         android:gravity="center"
         android:text="使用方法"
         android:textColor="@color/textColor"
@@ -52,12 +79,13 @@
         android:padding="5dp"
         android:text="@string/use_details"
         android:textColor="@color/textColor"/>
-
+    </LinearLayout>
+    </ScrollView>
     <LinearLayout
+        android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="100dp"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/use_details"
         android:orientation="vertical"
         android:padding="10dp">
 
@@ -65,8 +93,7 @@
             android:id="@+id/button_accessible"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="35dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
@@ -79,13 +106,12 @@
             android:id="@+id/button_update"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="35dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:background="@color/colorPrimary"
-            android:onClick="onGithubClick"
-            android:text="@string/app_github"
+            android:onClick="onWallClick"
+            android:text="@string/app_ad"
             android:textColor="@color/textTitleColor"/>
     </LinearLayout>
 

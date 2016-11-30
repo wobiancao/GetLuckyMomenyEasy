@@ -18,7 +18,9 @@ allprojects {
         allprojects {
             repositories {
                 jcenter()
-                maven { url "https://raw.githubusercontent.com/Pgyer/mvn_repo_pgyer/master" }
+                flatDir {
+                    dirs 'aar'
+                }
             }
         }
     }
